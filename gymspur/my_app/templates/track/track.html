@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block container %}
+<script>
+</script>
+<div class="row">
+      <div class="col-md-6" style="vertical-align: middle;text-align: center;">
+            <form method = "POST"
+            action="{{url_for('auth.loadchart')}}"
+            role="form">
+                   <fieldset>
+                      <p>
+                         <select id="form_frame" name = "myList">
+                            <option value="" disabled selected>Track an exercise</option>
+                             {% for exercise in exercises %}
+                                <option class="day_form" value = "{{exercise.id}}">{{exercise.exr_name}}</option>
+                            {% endfor %}
+                         </select>
+                      </p>
+                      <button type="submit" class="login_button" style="width:300px;">Track</button>
+                   </fieldset>
+            </form>
+                {% if chart_id %}
+                <div class="container">
+                     <h3 class="day_form" style="padding-top:30px;">{{ Exercise.query.filter_by(id=chart_id).first().exr_name }}</h3>
+                     <img src="/static/images/progress-{{chart_id}}.png" style="width:100%;margin-top:-10px;">
+               </div>
+               {% endif %}   
+      </div>
+      <div class="col-md-6" >
+            <div class="container-fluid" style="width:100%;">
+               {% if chart_id %}
+               <table>
+                  <tr>
+                     <th style="color:#f1f1f1;">Kg/Llbs</th>
+                     <th style="color:#f1f1f1;">Date</th>
+                  </tr>
+                  {% for v in Exercise.query.filter_by(id=chart_id).first().weekly_values %}
+                  <tr>
+                     <td style="color:#f1f1f1;">{{v.value}}</td>
+                     <td style="color:#f1f1f1;">{{v.date}}</td>
+                  </tr>
+                  {% endfor %}
+               </table>
+               {% endif %}
+            </div>
+      </div>
+</div>
+
+{% endblock %}

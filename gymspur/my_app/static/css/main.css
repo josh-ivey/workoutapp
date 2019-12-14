@@ -1,0 +1,419 @@
+@font-face {
+  font-family: 'gobold_bolditalic';
+  src: url('../fonts/gobold_bold_italic-webfont.woff2') format('woff2'),
+       url('../fonts/gobold_bold_italic-webfont.woff') format('woff'),
+       url('../fonts/GoboldBoldItalic.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'velocista';
+  src: url('../fonts/velocista-demo-ffp-webfont.woff2') format('woff2'),
+       url('../fonts/velocista-demo-ffp-webfont.woff') format('woff'),
+       url('../fonts/Velocista-Demo-FFP.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
+}
+body {
+  background-image: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
+.top-pad {
+  padding: 40px 15px;
+  text-align: center;
+}
+.container-fluid {
+  background: rgb(197,198,199);
+  background: rgba(31,40,51,0.7483368347338936);
+  border-radius: 20px;
+}
+table {
+  width: 100%;
+}
+td {
+  transition: all .2s ease-in-out;
+  font-family: Arial, Helvetica, sans-serif;  
+}
+td:hover {
+  background-color: #c5c6c7;
+  transform: scale(1.2);
+ }
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+  text-align: center;
+  font-size: medium;
+  
+}
+th {
+
+  color: #1f2833;
+}
+#row {
+    background:#45a29e; 
+    font-family: Arial, Helvetica, sans-serif;  
+}
+.mg_row {
+  background-color: #c5c6c7;
+  color: #0b0c10;
+  font-family: 'gobold_bolditalic';
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 20px;
+}
+
+/* Modal Content */
+.modal-content {
+  text-align: center;
+  background: rgba(31,40,51,0.9);
+    border-radius: 20px;
+  position: relative;
+  margin: auto;
+  padding: 40px;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #84ceeb;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #84ceeb;
+  color: white;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+a,p,small {
+  color: #f1f1f1;
+  text-decoration: none;
+}
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+h3 {
+   font-family: 'gobold_bolditalic';
+   font-size: xx-large;
+}
+.dayName {
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.dayName:hover, .dayName:focus, .dayName:active {
+  
+  -webkit-transform: translateX(8px);
+  transform: translateX(8px);
+}
+
+.navbar {
+  background:  #0b0c10;
+}
+
+
+.message {
+  padding: 20px;
+  color: white;
+  background: #84ceeb;
+  border-radius: 25px;
+}
+.hideform {
+  display:none;
+}
+
+small {
+  font-family: 'Arial';
+  font-size: medium;
+}
+small:hover {
+  color: #0b0c10;
+}
+.navbar-brand {
+  font-family: 'gobold_bolditalic';
+  font-size: large;
+  padding-left: 30px;
+  padding-right: 30px;
+
+}
+.ce_form {
+  color: #f1f1f1;
+  border: 0px;
+  background: transparent;
+  text-align: center;
+  width: 100%;
+}
+.ce_form:hover {
+  color: #0b0c10;
+}
+
+
+@media screen and (min-width: 420px) {
+  .exr_form{
+    color: #f1f1f1;
+    border: 0px;
+    background: transparent;
+    text-align: center;
+    width: 100%;
+    height: 25px;
+    overflow:hidden;
+    resize: none;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .exr_form{
+    color: #f1f1f1;
+    border: 0px;
+    background: transparent;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    overflow:hidden;
+    resize: none;
+    display: table-cell;
+    display: inline;
+  }
+}
+
+.exr_form:hover {
+  color: #0b0c10;
+}
+
+.day_form {
+  background: transparent;
+  width: 100%;
+  border:0px;
+  color: #f1f1f1;
+}
+.day_form:hover{
+  color: #c5c6c7;
+}
+
+.add_day_form {
+  font-family: 'gobold_bolditalic';
+  font-size: x-large;
+  border: 0px;
+  text-align: center;
+  width: 100%;
+}
+
+.login_logo {
+  width: 220px;
+  height: 220px;
+}
+.login_form{
+  color: #f1f1f1;
+  font-family: 'gobold_bolditalic';
+  font-size: xx-large;
+  background: transparent;
+  border:0px;
+  transition: all .2s ease-in-out;
+}
+.login_form:hover {
+  transform: scale(1.1);
+}
+
+.login_button {
+  font-family: "gobold_bolditalic";
+  font-size: large;
+  background-color: #f1f1f1;
+  color: #0b0c10;
+  border: 0px;
+  border-radius: 50px;
+  padding: 10px;
+  width: 360px;
+  transition: all .2s ease-in-out;
+}
+
+.login_button:hover {
+  transform: scale(1.1);
+  color: #f1f1f1;
+  background-color: #0b0c10;
+}
+
+.search_button {
+  font-family: "gobold_bolditalic";
+  font-size: small;
+  background-color: #f1f1f1;
+  color: #0b0c10;
+  border: 0px;
+  padding: 10px;
+  width: 80px;
+  transition: all .2s ease-in-out;
+}
+
+.search_button:hover {
+  transform: scale(1.1);
+  color: #f1f1f1;
+  background-color: #0b0c10;
+}
+
+.add_exercise_button {
+  font-family: "gobold_bolditalic";
+  font-size: medium;
+  background-color: #f1f1f1;
+  color: #0b0c10;
+  border: 0px;
+  border-radius: 50px;
+  padding: 10px;
+  width: 120px;
+  transition: all .2s ease-in-out;
+}
+.add_exercise_button:hover {
+  transform: scale(1.1);
+  color: #f1f1f1;
+  background-color: #0b0c10;
+}
+.integer_data {
+  width: 50px;
+}
+
+.progress-container {
+  background: rgb(197,198,199);
+  background: linear-gradient(319deg, rgba(197,198,199,1) 0%, rgba(31,40,51,0.7483368347338936) 53%);
+  border-radius: 20px;
+}
+
+.btn .btn-default {
+  font-family: 'gobold_bolditalic';
+  font-size: xx-large;
+  color: #f1f1f1;
+}
+
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+  background-color: #fff;
+}
+
+@media screen and (min-width: 1024px) {
+  .fullscreen-bg_video {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .fullscreen-bg_video {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    height: 100%;
+    margin-right: 500px;
+  }
+}
+
+select {
+  width:300px;
+  height:50px;
+  font-family: 'gobold_bolditalic';
+  font-size: large;
+  color: #f1f1f1;
+  background-color:  rgba(31,40,51,0.7483368347338936);
+}
+.delete_day {
+  float: right;
+}

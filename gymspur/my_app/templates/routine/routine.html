@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block container %}
+    <script>
+    function showRenameDay(day_id) {
+        var x = document.getElementById("rename-form-"+day_id);
+        var y = document.getElementById("thisDayName-"+day_id)
+        if (x.style.display === "none") 
+        {
+            x.style.display = "block";
+            y.style.display = "none";
+            
+        } 
+        else {
+            x.style.display = "none";
+            y.style.display = "block";
+            }
+        }
+        
+    </script>
+    <script>
+                // Get the modal
+        function showModal(day_id) {
+            var modal = document.getElementById("myModal-"+day_id);
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn-"+day_id);
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            // When the user clicks on the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+            
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+            } 
+        }
+    </script>
+    <!--<script>
+        function renameDay(day_id) {
+            var dayText = document.getElementById("thisDayName-" + day_id);
+            var dayForm = document.forms["change-day-" + day_id];
+
+            document.onclick = function (event) {
+                if (event.target != dayText) {
+                    if (dayText.innerHTML == "<br>") {
+                        alert("Please enter a name for this day.");
+                    }
+                    else {
+                        document.getElementById(day_id).value = dayText.innerHTML;
+                        dayForm.submit();
+                    }
+                }
+            }
+        }
+    </script>-->
+    <script>
+        function showDay(day_id) {
+            var dayblock = document.getElementById("dayblock-"+day_id);
+            if (dayblock.style.display == "none") {
+                dayblock.style.display = "block";
+            }
+            else {
+                dayblock.style.display = "none";
+            }
+            
+    }   
+    </script>
+    <br> 
+    <!--<div class="container">
+        {% for day in days %}
+            <button class="btn btn-default" id="showDay-{{day.id}}" onclick="showDay({{day.id}})">{{day.day_name}}</button>
+        {% endfor %}
+    </div>-->
+    {% for day in days %}
+    <div id="dayblock-{{day.id}}" class="container-fluid" style="padding-top:10px;">
+        <div id="dayDiv-{{day.id}}" style="padding-top:2px;">
+            <a href="{{ url_for('auth.delete_day', day_id=day.id) }}" class="delete_day"><img style="height:20px;width:20px;" src="static/images/bin.png"></a>
+            <br>
+            <form id ="change-day-{{day.id}}" style="display:block"method="POST" action="{{ url_for('auth.rename_day', day_id=day.id) }}" role="form">
+                <h3 class="dayName">{{ form.day(id=day.id, value=day.day_name, class_="day_form") }}</h3>
+            </form>      
+        </div>
+        
+        <!--<form id="rename-form-{{day.id}}" style="display:none;" method="POST" action="{{ url_for('auth.rename_day', day_id=day.id) }}" role="form">
+            {{ form.day() }}<button class="btn btn-default" type="submit" class="btn btn-default">Done</button> 
+        </form> -->
+        <table>
+            <tr id="row">
+                <th>Exercise</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Kg/Lbs</th>
+                <th></th>
+            </tr>
+        {% for mg in muscle_groups[day.id] %}
+        <tr class="mg_row" style="width:100%"><th colspan="5" style="width:100%">{{mg}}</th></tr>
+        {% for exercise in day.exercises if exercise.exr_mg == mg %}
+        <tr>
+            <form method="POST" action="{{ url_for('auth.change_mg', exercise_id=exercise.id)}}" role="form">
+                <td style="display:none;">    
+                        {{ change_exercise_form.muscle_group(value=exercise.exr_mg, class_="ce_form") }}
+                </td>
+                <td>
+                        <!--{% set f = change_exercise_form.exercise.process_data(exercise.exr_name) %} -->
+                        {{ change_exercise_form.exercise(value=exercise.exr_name, class_="exr_form", onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }") }}
+                </td>
+                <td class="integer_data">
+                        {{ change_exercise_form.sets(value=exercise.exr_sets, class_="ce_form") }}
+                </td>
+                <td class="integer_data">
+                        {{ change_exercise_form.reps(value=exercise.exr_reps, class_="ce_form") }}
+                </td>
+                <td class="integer_data">
+                       <div>{{ change_exercise_form.value(value=exercise.exr_val, class_="ce_form") }}</div>
+                </td>
+                <button type="submit" style="display:none;"></button>
+            </form>
+            <td class="integer_data">
+                <a href="{{ url_for('auth.delete_exercise', exercise_id=exercise.id) }}">
+                <img src="/static/images/delete.png" style="width:20px;height:20px;"></a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+        </table>
+        <br>
+        <button class="add_exercise_button" id="myBtn-{{day.id}}" onclick="showModal({{day.id}})">Add Exercise</button>
+        <br>
+        <br>
+        <!-- The Modal -->
+        <div id="myModal-{{ day.id }}" class="modal">
+        <!-- Modal content -->
+          <div class="modal-content">
+            <form method="POST" action="{{ url_for('auth.add_exercise', day_id=day.id) }}" role="form">
+                <div class="modal-body">
+                        <div class="form-group">
+                                <h3 style="color: #f1f1f1;">MUSCLE</h3>{{ e_form.muscle_group(class_="form-control") }}
+                                <h3 style="color: #f1f1f1;">NAME</h3>{{ e_form.exercise(class_="form-control") }}
+                                <h3 style="color: #f1f1f1;">SETS</h3>{{ e_form.sets(class_="form-control") }}
+                                <h3 style="color: #f1f1f1;">REPS</h3>{{ e_form.reps(class_="form-control") }}
+                                <h3 style="color: #f1f1f1;">WEIGHT (KG/LBS)</h3>{{ e_form.value(class_="form-control") }}
+                        </div>     
+                </div>
+                <button type="submit" class="login_button" >Done</button>
+            </form>
+          </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    {% endfor %}
+    <br>
+    <br>
+    <div class="container" style="padding-bottom: 20px;">
+            <form method="POST" action="{{ url_for('auth.routine') }}" role="form">
+                {{ form.day(placeholder="Add a new day!", class_="add_day_form")}}</div>
+            </form>
+    </div>
+{% endblock %}
